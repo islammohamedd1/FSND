@@ -1,0 +1,21 @@
+{% extends 'layouts/main.html' %}
+{% block title %}Add Artist Availability{% endblock %}
+{% block content %}
+  <div class="form-wrapper">
+    <form class="form" method="post" action="/artists/{{artist.id}}/availability/add">
+      <h3 class="form-heading">Add Artist Availability <em>{{ artist.name }}</em></h3>
+      {% if artist.always_available %}
+      <div class="alert alert-warning">You have set your status to always available. if you add an availaiblity time, you will be marked as available only on the times you add using this form</div>
+      {% endif %}
+      <div class="form-group">
+        <label for="start_time">Availability Start Time</label>
+        {{ form.availability_start(class_ = 'form-control', placeholder='YYYY-MM-DD HH:MM', autofocus = true) }}
+      </div>
+      <div class="form-group">
+        <label for="start_time">Availability End Time</label>
+        {{ form.availability_end(class_ = 'form-control', placeholder='YYYY-MM-DD HH:MM', autofocus = true) }}
+      </div>
+      <input type="submit" value="Add Artist Availability" class="btn btn-primary btn-lg btn-block">
+    </form>
+  </div>
+{% endblock %}
