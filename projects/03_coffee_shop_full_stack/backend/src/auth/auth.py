@@ -30,19 +30,19 @@ def get_token_auth_header():
         raise AuthError({
             'code': 'invalid_header',
             'description': 'Authorization malformed.'
-        }, 400)
+        }, 401)
     auth_header = request.headers['Authorization']
     header_parts = auth_header.split(' ')
     if len(header_parts) != 2:
         raise AuthError({
             'code': 'invalid_header',
             'description': 'Authorization malformed.'
-        }, 400)
+        }, 401)
     elif header_parts[0].lower() != 'bearer':
         raise AuthError({
             'code': 'invalid_header',
             'description': 'Authorization malformed.'
-        }, 400)
+        }, 401)
 
     token = header_parts[1]
     return token
@@ -55,7 +55,7 @@ def check_permissions(permission, payload):
     if permission in granted_permissions:
         return True
     else:
-        abort(403)
+        abort(401)
 
 
 def verify_decode_jwt(token):

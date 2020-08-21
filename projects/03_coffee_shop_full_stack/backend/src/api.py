@@ -101,7 +101,7 @@ def unprocessable(error):
 
 
 @app.errorhandler(404)
-def not_found():
+def not_found(error):
     return jsonify({
         "success": False,
         "error": 404,
@@ -110,7 +110,7 @@ def not_found():
 
 
 @app.errorhandler(401)
-def unauthorized():
+def unauthorized(error):
     return jsonify({
         "success": False,
         "error": 401,
@@ -119,7 +119,7 @@ def unauthorized():
 
 
 @app.errorhandler(403)
-def forbidden():
+def forbidden(error):
     return jsonify({
         "success": False,
         "error": 403,
